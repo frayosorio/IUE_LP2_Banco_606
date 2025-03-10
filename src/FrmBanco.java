@@ -37,6 +37,8 @@ public class FrmBanco extends JFrame {
 
     JTabbedPane tp;
 
+    List<Cuenta> cuentas = new ArrayList<>();
+
     public FrmBanco() {
         setSize(600, 400);
         setTitle("Cuentas Bancarias");
@@ -248,7 +250,25 @@ public class FrmBanco extends JFrame {
 
     private void btnGuardarCuentaClick() {
         pnlEditarCuenta.setVisible(false);
-
+        switch ((cmbTipoCuenta.getSelectedIndex())) {
+            case 0:
+                cuentas.add(new Ahorros(txtNumero.getText(),
+                        txtTitular.getText(),
+                        Double.parseDouble(txtSaldoInicial.getText())));
+                break;
+            case 1:
+                cuentas.add(new Corriente(txtNumero.getText(),
+                        txtTitular.getText(),
+                        Double.parseDouble(txtSaldoInicial.getText()),
+                        Double.parseDouble(txtLimite.getText())));
+                break;
+            case 2:
+                cuentas.add(new Credito(txtNumero.getText(),
+                        txtTitular.getText(),
+                        Double.parseDouble(txtSaldoInicial.getText()),
+                        Double.parseDouble(txtLimite.getText())));
+                break;
+        }
     }
 
     private void btnCancelarCuentaClick() {
